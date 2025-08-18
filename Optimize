@@ -10,6 +10,16 @@ netsh interface tcp set global fastopen=disabled
 netsh interface tcp set global fastopenfallback=disabled
 netsh interface tcp set global hystart=disabled
 netsh interface tcp set global prr=disabled
+netsh interface tcp set global dca=disabled
+netsh interface tcp set global netdma=disabled
+
+netsh interface tcp set security mpp=disabled profiles=disabled
+netsh interface tcp set heuristics wsh=disabled forcews=disabled
+
+netsh interface 6to4 set state disabled
+netsh interface isatap set state disabled
+netsh interface teredo set state disabled
+
 netsh interface tcp set supplemental template=Internet congestionprovider=DCTCP
 netsh interface tcp set supplemental template=Compat congestionprovider=DCTCP
 netsh interface tcp set supplemental template=Internetcustom congestionprovider=DCTCP
@@ -66,3 +76,8 @@ Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*TCPChecksum
 Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*TCPChecksumOffloadIPv6" -RegistryValue 0
 Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*UDPChecksumOffloadIPv4" -RegistryValue 0
 Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*UDPChecksumOffloadIPv6" -RegistryValue 0
+
+Disable-NetAdapterChecksumOffload -Name "อีเทอร์เน็ต"
+Disable-NetAdapterLso -Name "อีเทอร์เน็ต"
+Disable-NetAdapterPowerManagement -Name "อีเทอร์เน็ต"
+Disable-NetAdapterRss -Name "อีเทอร์เน็ต"
