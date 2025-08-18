@@ -36,31 +36,28 @@ netsh int ipv6 set glob loopbacklargemtu=disabled
 netsh int ipv6 set glob sourcebasedecmp=disabled
 
 $adapterName = "อีเทอร์เน็ต"
-
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*EEE"                         -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*JumboPacket"                -RegistryValue 1514
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*EEE" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*JumboPacket" -RegistryValue 1514
 Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*ModernStandbyWoLMagicPacket" -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "AdvancedEEE"                 -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "EnableGreenEthernet"         -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "GigaLite"                    -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "PowerSavingMode"             -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "S5WakeOnLan"                 -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*WakeOnMagicPacket"          -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*WakeOnPattern"              -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "WolShutdownLinkSpeed"        -RegistryValue 0
-
-
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*FlowControl"              -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*InterruptModeration"      -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*IPChecksumOffloadIPv4"    -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*LsoV2IPv4"                -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*LsoV2IPv6"                -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*PMARPOffload"             -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*PMNSOffload"              -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*PriorityVLANTag"          -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*RSS"                      -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*SelectiveSuspend"         -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*TCPChecksumOffloadIPv4"   -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*TCPChecksumOffloadIPv6"   -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*UDPChecksumOffloadIPv4"   -RegistryValue 0
-Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*UDPChecksumOffloadIPv6"   -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "AdvancedEEE" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "EnableGreenEthernet" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "GigaLite" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "PowerSavingMode" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "S5WakeOnLan" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*WakeOnMagicPacket" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*WakeOnPattern" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "WolShutdownLinkSpeed" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*FlowControl" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*InterruptModeration" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*IPChecksumOffloadIPv4" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*LsoV2IPv4" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*LsoV2IPv6" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*PMARPOffload" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*PMNSOffload" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*PriorityVLANTag" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*RSS" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*SelectiveSuspend" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*TCPChecksumOffloadIPv4" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*TCPChecksumOffloadIPv6" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*UDPChecksumOffloadIPv4" -RegistryValue 0
+Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*UDPChecksumOffloadIPv6" -RegistryValue 0
