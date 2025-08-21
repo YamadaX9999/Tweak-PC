@@ -83,6 +83,7 @@ Disable-NetAdapterPowerManagement -Name "อีเทอร์เน็ต"
 Disable-NetAdapterRss -Name "อีเทอร์เน็ต"
 Disable-NetAdapterBinding -Name "*"
 Enable-NetAdapterBinding -Name "อีเทอร์เน็ต" -ComponentID ms_tcpip
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
 $regPath = "HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}\0010"
 
