@@ -20,11 +20,11 @@ netsh interface 6to4 set state disabled
 netsh interface isatap set state disabled
 netsh interface teredo set state disabled
 
-netsh interface tcp set supplemental template=Internet congestionprovider=DCTCP
-netsh interface tcp set supplemental template=Compat congestionprovider=DCTCP
-netsh interface tcp set supplemental template=Internetcustom congestionprovider=DCTCP
-netsh interface tcp set supplemental template=Datacenter congestionprovider=DCTCP
-netsh interface tcp set supplemental template=Datacentercustom congestionprovider=DCTCP
+netsh interface tcp set supplemental template=Internet congestionprovider=Newreno
+netsh interface tcp set supplemental template=Compat congestionprovider=Newreno
+netsh interface tcp set supplemental template=Internetcustom congestionprovider=Newreno
+netsh interface tcp set supplemental template=Datacenter congestionprovider=Newreno
+netsh interface tcp set supplemental template=Datacentercustom congestionprovider=Newreno
 
 netsh interface ipv4 set global icmpredirects=disabled
 netsh interface ipv4 set global taskoffload=disabled
