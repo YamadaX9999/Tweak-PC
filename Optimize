@@ -50,6 +50,12 @@ netsh interface ipv6 set global flowlabel=disabled
 netsh interface ipv6 set global loopbacklargemtu=disabled
 netsh interface ipv6 set global sourcebasedecmp=disabled
 
+Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces | ForEach-Object {
+    $interfacePath = $_.PSPath
+    Set-ItemProperty -LiteralPath $interfacePath -Name "TcpAckFrequency" -Value 1 -Force -ErrorAction SilentlyContinue
+    Set-ItemProperty -LiteralPath $interfacePath -Name "TCPNoDelay" -Value 1 -Force -ErrorAction SilentlyContinue
+}
+
 $adapterName = "อีเทอร์เน็ต"
 Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*EEE" -RegistryValue 0
 Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*JumboPacket" -RegistryValue 1514
