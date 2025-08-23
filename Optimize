@@ -50,6 +50,19 @@ netsh interface ipv6 set global flowlabel=disabled
 netsh interface ipv6 set global loopbacklargemtu=disabled
 netsh interface ipv6 set global sourcebasedecmp=disabled
 
+$multimedia = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile"
+Set-ItemProperty -Path $multimedia -Name "NetworkThrottlingIndex" -Type DWord -Value 0xffffffff
+Set-ItemProperty -Path $multimedia -Name "SystemResponsiveness" -Type DWord -Value 0
+
+$dnsPath = "HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters"
+New-Item -Path $dnsPath -Force
+Set-ItemProperty -Path $dnsPath -Name "MaxCacheTtl" -Type DWord -Value 86400
+Set-ItemProperty -Path $dnsPath -Name "MaxNegativeCacheTtl" -Type DWord -Value 0
+
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Psched" -Force
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Psched" -Name "NonBestEffortLimit" -Type DWord -Value 0
+Set-DnsClientServerAddress -InterfaceAlias "อีเทอร์เน็ต" -ServerAddresses ("8.8.8.8", "8.8.4.4")
+
 Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces | ForEach-Object {
     $interfacePath = $_.PSPath
     Set-ItemProperty -LiteralPath $interfacePath -Name "TcpAckFrequency" -Value 1 -Force -ErrorAction SilentlyContinue
