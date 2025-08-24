@@ -70,7 +70,7 @@ Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interface
     $interfacePath = $_.PSPath
     Set-ItemProperty -LiteralPath $interfacePath -Name "TcpAckFrequency" -Value 1 -Force -ErrorAction SilentlyContinue
     Set-ItemProperty -LiteralPath $interfacePath -Name "TCPNoDelay" -Value 1 -Force -ErrorAction SilentlyContinue
-    Set-ItemProperty -LiteralPath $interfacePath -Name "TcpDelAckTicks" -Value 0 -Force -ErrorAction SilentlyContinue
+    Set-ItemProperty -LiteralPath $interfacePath -Name "TcpDelAckTicks" -Value 1 -Force -ErrorAction SilentlyContinue
 }
 
 $adapterName = "อีเทอร์เน็ต"
