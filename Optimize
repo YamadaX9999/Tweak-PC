@@ -53,6 +53,7 @@ netsh interface ipv6 set global sourcebasedecmp=disabled
 $multimedia = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile"
 Set-ItemProperty -Path $multimedia -Name "NetworkThrottlingIndex" -Type DWord -Value 0xffffffff
 Set-ItemProperty -Path $multimedia -Name "SystemResponsiveness" -Type DWord -Value 0
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control" -Name "SvcHostSplitThresholdInKB" -Value 2000000 -Type DWord
 
 $dnsPath = "HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters"
 New-Item -Path $dnsPath -Force
@@ -63,10 +64,13 @@ New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Psched" -Force
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Psched" -Name "NonBestEffortLimit" -Type DWord -Value 0
 Set-DnsClientServerAddress -InterfaceAlias "อีเทอร์เน็ต" -ServerAddresses ("8.8.8.8", "8.8.4.4")
 
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Name "Tcp1323Opts" -Type DWord -Value 0
+
 Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces | ForEach-Object {
     $interfacePath = $_.PSPath
     Set-ItemProperty -LiteralPath $interfacePath -Name "TcpAckFrequency" -Value 1 -Force -ErrorAction SilentlyContinue
     Set-ItemProperty -LiteralPath $interfacePath -Name "TCPNoDelay" -Value 1 -Force -ErrorAction SilentlyContinue
+    Set-ItemProperty -LiteralPath $interfacePath -Name "TcpDelAckTicks" -Value 0 -Force -ErrorAction SilentlyContinue
 }
 
 $adapterName = "อีเทอร์เน็ต"
