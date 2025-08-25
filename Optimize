@@ -50,6 +50,26 @@ netsh interface ipv6 set global flowlabel=disabled
 netsh interface ipv6 set global loopbacklargemtu=disabled
 netsh interface ipv6 set global sourcebasedecmp=disabled
 
+$dgPath = "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard"
+New-Item -Path $dgPath -Force
+Set-ItemProperty -Path $dgPath -Name "EnableVirtualizationBasedSecurity" -Value 0 -Type DWord
+
+$hvcPath = "$dgPath\Scenarios\HypervisorEnforcedCodeIntegrity"
+New-Item -Path $hvcPath -Force
+Set-ItemProperty -Path $hvcPath -Name "Enabled" -Value 0 -Type DWord
+
+$defenderPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection"
+New-Item -Path $defenderPath -Force
+Set-ItemProperty -Path $defenderPath -Name "DisableRealtimeMonitoring" -Value 1 -Type DWord
+
+$mmPath = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management"
+Set-ItemProperty -Path $mmPath -Name "LargeSystemCache" -Value 1 -Type DWord
+Set-ItemProperty -Path $mmPath -Name "SecondLevelDataCache" -Value 0x00002000 -Type DWord
+
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "HwSchMode" /t REG_DWORD /d 1 /f
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\GameDVR" /v "AppCaptureEnabled" /t REG_DWORD /d 0 /f
+reg add "HKCU\System\GameConfigStore" /v "GameDVR_Enabled" /t REG_DWORD /d 0 /f
+
 $multimedia = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile"
 Set-ItemProperty -Path $multimedia -Name "NetworkThrottlingIndex" -Type DWord -Value 0xffffffff
 Set-ItemProperty -Path $multimedia -Name "SystemResponsiveness" -Type DWord -Value 0
@@ -65,6 +85,7 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Psched" -Name 
 Set-DnsClientServerAddress -InterfaceAlias "อีเทอร์เน็ต" -ServerAddresses ("8.8.8.8", "8.8.4.4")
 
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Name "Tcp1323Opts" -Type DWord -Value 0
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Name "TcpWindowSize" -Type DWord -Value 65535
 
 Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces | ForEach-Object {
     $interfacePath = $_.PSPath
