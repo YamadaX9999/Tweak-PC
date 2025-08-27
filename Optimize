@@ -50,6 +50,9 @@ netsh interface ipv6 set global flowlabel=disabled
 netsh interface ipv6 set global loopbacklargemtu=disabled
 netsh interface ipv6 set global sourcebasedecmp=disabled
 
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name "AllowTelemetry" -Type DWord -Value 0
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity" -Name "Enabled" -Type DWord -Value 0
+
 $dgPath = "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard"
 New-Item -Path $dgPath -Force
 Set-ItemProperty -Path $dgPath -Name "EnableVirtualizationBasedSecurity" -Value 0 -Type DWord
