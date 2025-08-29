@@ -37,6 +37,7 @@ netsh interface ipv4 set global addressmaskreply=disabled
 netsh interface ipv4 set global flowlabel=disabled
 netsh interface ipv4 set global loopbacklargemtu=disabled
 netsh interface ipv4 set global sourcebasedecmp=disabled
+netsh interface ipv4 set subinterface "อีเทอร์เน็ต" mtu=1492 store=persistent
 
 netsh interface ipv6 set global icmpredirects=disabled
 netsh interface ipv6 set global taskoffload=disabled
