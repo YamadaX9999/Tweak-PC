@@ -229,3 +229,7 @@ Set-ItemProperty -Path $regPath -Name "RtHwCapability" -Value 0
 Set-ItemProperty -Path $regPath -Name "LTROBFF" -Value 0
 Set-ItemProperty -Path $regPath -Name "HwAutoloadMedia" -Value "0"
 Set-ItemProperty -Path $regPath -Name "PnPCapabilities" -Value 0
+
+bcdedit /set useplatformtick yes
+bcdedit /set disabledynamictick yes
+fsutil behavior set DisableDeleteNotify 0
