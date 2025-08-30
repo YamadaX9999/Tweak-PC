@@ -112,6 +112,11 @@ if (-not (Test-Path $keyboardKey)) {
 }
 Set-ItemProperty -Path $keyboardKey -Name "KeyboardDataQueueSize" -Value 16 -Type DWord
 
+New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Services\hidusb\Parameters" -Force | Out-Null
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\hidusb\Parameters" -Name "EnhancedPowerManagementEnabled" -Value 0 -Type DWord
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\hidusb\Parameters" -Name "SelectiveSuspendEnabled" -Value 0 -Type DWord
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\hidusb\Parameters" -Name "LowLatencyMode" -Value 1 -Type DWord
+
 $adapterName = "อีเทอร์เน็ต"
 Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*EEE" -RegistryValue 0
 Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*JumboPacket" -RegistryValue 1514
