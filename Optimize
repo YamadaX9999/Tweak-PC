@@ -99,6 +99,8 @@ Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interface
 }
 
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\PriorityControl" -Name "Win32PrioritySeparation" -Value 42 -Type DWord
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Mouclass\Parameters" -Name "MouseDataQueueSize" -Value 16 -Type DWord
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Kbdclass\Parameters" -Name "KeyboardDataQueueSize" -Value 16 -Type DWord
 
 $adapterName = "อีเทอร์เน็ต"
 Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*EEE" -RegistryValue 0
