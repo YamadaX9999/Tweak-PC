@@ -116,6 +116,11 @@ New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Services\hidusb\Parameters" -Forc
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\hidusb\Parameters" -Name "EnhancedPowerManagementEnabled" -Value 0 -Type DWord
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\hidusb\Parameters" -Name "SelectiveSuspendEnabled" -Value 0 -Type DWord
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\hidusb\Parameters" -Name "LowLatencyMode" -Value 1 -Type DWord
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Power" -Name "PowerThrottlingOff" -Value 1 -Type DWord
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" `
+  -Name "CcAggressiveFlush" -Value 1 -Type DWord
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" `
+  -Name "CcDirtyPageThreshold" -Value 8192 -Type DWord
 
 $adapterName = "อีเทอร์เน็ต"
 Set-NetAdapterAdvancedProperty -Name $adapterName -RegistryKeyword "*EEE" -RegistryValue 0
