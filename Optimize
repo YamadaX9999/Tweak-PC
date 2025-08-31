@@ -54,6 +54,11 @@ netsh interface ipv6 set global sourcebasedecmp=disabled
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" -Name "AllowTelemetry" -Type DWord -Value 0
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity" -Name "Enabled" -Type DWord -Value 0
 
+$kernelPath = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Kernel"
+$fsPath = "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem"
+New-ItemProperty -Path $kernelPath -Name "DisablePriorityBoost" -PropertyType DWORD -Value 0 -Force
+New-ItemProperty -Path $fsPath -Name "NtfsDisableLastAccessUpdate" -PropertyType DWORD -Value 1 -Force
+
 $regPath = "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters"
 New-ItemProperty -Path $regPath -Name "MaxUserPort" -PropertyType DWORD -Value 65534 -Force
 New-ItemProperty -Path $regPath -Name "TcpTimedWaitDelay" -PropertyType DWORD -Value 30 -Force
