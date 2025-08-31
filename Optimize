@@ -268,3 +268,4 @@ Set-ItemProperty -Path $regPath -Name "PnPCapabilities" -Value 0
 bcdedit /set useplatformtick yes
 bcdedit /set disabledynamictick yes
 fsutil behavior set DisableDeleteNotify 0
+powercfg -h off
