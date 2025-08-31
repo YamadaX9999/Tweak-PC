@@ -269,3 +269,30 @@ bcdedit /set useplatformtick yes
 bcdedit /set disabledynamictick yes
 fsutil behavior set DisableDeleteNotify 0
 powercfg -h off
+
+Set-Service -Name "DiagTrack" -StartupType Disabled
+Set-Service -Name "dmwappushservice" -StartupType Disabled
+Set-Service -Name "DoSvc" -StartupType Disabled # Delivery Optimization
+Set-Service -Name "MapsBroker" -StartupType Disabled
+Set-Service -Name "SensorService" -StartupType Disabled
+Set-Service -Name "lfsvc" -StartupType Disabled # Geolocation Service
+Set-Service -Name "XboxGipSvc" -StartupType Disabled
+Set-Service -Name "XblGameSave" -StartupType Disabled
+Set-Service -Name "cdpusersvc" -StartupType Disabled # Connected Devices Platform
+Set-Service -Name "DisplayEnhancementService" -StartupType Disabled
+Set-Service -Name "CoreMessagingRegistrar" -StartupType Disabled
+Set-Service -Name "PimIndexMaintenanceSvc" -StartupType Disabled
+Set-Service -Name "FontCache" -StartupType Disabled
+Set-Service -Name "BthAvctpSvc" -StartupType Disabled # Bluetooth Audio
+Set-Service -Name "Netlogon" -StartupType Disabled # Only necessary for domain networks
+
+$desktopPath = "HKCU:\Control Panel\Desktop"
+Set-ItemProperty -Path $desktopPath -Name "FontSmoothing" -Value 0
+Set-ItemProperty -Path $desktopPath -Name "UserPreferenceMask" -Value ([byte[]](0x90, 0x12, 0x01, 0x80))
+Set-ItemProperty -Path $desktopPath -Name "ForegroundFlashCount" -Value 0
+Set-ItemProperty -Path $desktopPath -Name "ActiveWndTrkTimeout" -Value 0
+Set-ItemProperty -Path $desktopPath -Name "WaitToKillAppTimeout" -Value 1000
+Set-ItemProperty -Path $desktopPath -Name "WaitToKillServiceTimeout" -Value 2000
+
+$performancePath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects"
+Set-ItemProperty -Path $performancePath -Name "VisualFXSetting" -Value 2
