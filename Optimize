@@ -88,6 +88,8 @@ Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\k
 $multimedia = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile"
 Set-ItemProperty -Path $multimedia -Name "NetworkThrottlingIndex" -Type DWord -Value 0xffffffff
 Set-ItemProperty -Path $multimedia -Name "SystemResponsiveness" -Type DWord -Value 0
+Set-ItemProperty -Path $multimedia -Name "AlwaysOn" -Type DWord -Value 1
+Set-ItemProperty -Path $multimedia -Name "NoLazyMode" -Type DWord -Value 1
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control" -Name "SvcHostSplitThresholdInKB" -Value 33554432 -Type DWord
 
 $mmPath = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management"
