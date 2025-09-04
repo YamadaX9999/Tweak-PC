@@ -90,6 +90,10 @@ Set-ItemProperty -Path $multimedia -Name "NetworkThrottlingIndex" -Type DWord -V
 Set-ItemProperty -Path $multimedia -Name "SystemResponsiveness" -Type DWord -Value 0
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control" -Name "SvcHostSplitThresholdInKB" -Value 33554432 -Type DWord
 
+$mmPath = "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management"
+Set-ItemProperty -Path $mmPath -Name "DisablePagingExecutive" -Value 1 -Type DWord
+Set-ItemProperty -Path $mmPath -Name "IoPageLockLimit" -Value 0 -Type DWord # 0 = Automatic
+
 $dnsPath = "HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters"
 New-Item -Path $dnsPath -Force
 Set-ItemProperty -Path $dnsPath -Name "MaxCacheTtl" -Type DWord -Value 86400
